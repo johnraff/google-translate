@@ -658,7 +658,7 @@ class GoogleTranslator(object):
             Python dictionary.
 
         """
-        EXTRA_KEYS = {1: "nouns", 2: "verbs", 3: "adjectives"}
+        EXTRA_KEYS = {1: "nouns", 2: "verbs", 3: "adjectives", 4: "adverbs", 5: "prepositions"}
 
         data_dict = {
             "original_text": "",
@@ -690,7 +690,7 @@ class GoogleTranslator(object):
             pass
 
         try:
-            data_dict["has_typo"] = json_list[7][-1]
+            data_dict["has_typo"] = (json_list[7] != "" and json_list[7] is not None)
         except IndexError:
             pass
 
@@ -711,19 +711,20 @@ class GoogleTranslator(object):
 
         # Extract extra translations
         try:
-            for item in json_list[1]:
-                item_type = item[-1]
+            if json_list[1] is not None:
+                for item in json_list[1]:
+                    item_type = item[-1]
 
-                if item_type in EXTRA_KEYS:
-                    dest_key = EXTRA_KEYS[item_type]
-                else:
-                    continue
+                    if item_type in EXTRA_KEYS:
+                        dest_key = EXTRA_KEYS[item_type]
+                    else:
+                        continue
 
-                temp_dict = {}
-                for extra_trans in item[2]:
-                    temp_dict[extra_trans[0]] = extra_trans[1]
+                    temp_dict = {}
+                    for extra_trans in item[2]:
+                        temp_dict[extra_trans[0]] = extra_trans[1]
 
-                data_dict["extra"][dest_key] = temp_dict
+                    data_dict["extra"][dest_key] = temp_dict
         except IndexError:
             pass
 

@@ -33,13 +33,13 @@ Installation
 
 From Source
 ^^^^^^^^^^^
-    1. Download & extract source from `here <https://github.com/MrS0m30n3/google-translate/archive/0.2.zip>`_
-    2. Change directory into **google-translate-0.2/**
-    3. Run `sudo python setup.py install`
+    1. Download & extract source from `here <https://github.com/MrS0m30n3/google-translate/archive/0.2.3.zip>`_
+    2. Change directory into **google-translate-0.2.3/**
+    3. Run `python setup.py install`
 
 From Pypi
 ^^^^^^^^^
-    1. Just run `sudo pip install doodle-translate`
+    1. Just run `pip install doodle-translate`
 
 License
 -------
